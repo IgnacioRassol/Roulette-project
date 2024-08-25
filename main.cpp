@@ -1,10 +1,13 @@
 #include "roulette_result.h"
 #include "player.h"
 #include "bet_checker.h"
+#include "roulette.h"
 #include <iostream>
 
 int main(){
-    RouletteResult result(2);
+    Roulette roulette;
+    RouletteResult result{roulette.spin()};
+    std::cout << "Result: " << result.get_result() << std::endl;
     std::cout << "Is red: " << result.result_is_red() << std::endl;
     std::cout << "Is black: " << result.result_is_black() << std::endl;
     std::cout << "Is even: " << result.result_is_even() << std::endl;

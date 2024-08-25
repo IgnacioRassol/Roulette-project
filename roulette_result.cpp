@@ -18,6 +18,10 @@ RouletteResult::RouletteResult(int number)
 }
 
 // Public methods
+int RouletteResult::get_result() {
+    return number;
+}
+
 bool RouletteResult::result_is_red() {
     return is_red;
 }
