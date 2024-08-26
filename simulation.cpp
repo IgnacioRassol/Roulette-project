@@ -8,39 +8,26 @@
 
 void default_simulation(){
     std::vector<Player> players{
-        Player(std::make_shared<AlwaysRedBetResultChecker>(), "Always Red"),
-        Player(std::make_shared<AlwaysBlackBetResultChecker>(), "Always Black"),
-        Player(std::make_shared<AlwaysHighBetResultChecker>(), "Always High"),
-        Player(std::make_shared<AlwaysLowBetResultChecker>(), "Always Low"),
-        Player(std::make_shared<AlwaysEvenBetResultChecker>(), "Always Even"),
-        Player(std::make_shared<AlwaysOddBetResultChecker>(), "Always Odd")
+        Player(std::make_shared<AlwaysRedBetResultChecker>(), "Always Red", true),
+        Player(std::make_shared<AlwaysBlackBetResultChecker>(), "Always Black", true),
+        Player(std::make_shared<AlwaysHighBetResultChecker>(), "Always High", true),
+        Player(std::make_shared<AlwaysLowBetResultChecker>(), "Always Low", true),
+        Player(std::make_shared<AlwaysEvenBetResultChecker>(), "Always Even", true),
+        Player(std::make_shared<AlwaysOddBetResultChecker>(), "Always Odd", true)
     };
 
-    simulation(10, players, true);
+    simulation(10, players);
 }
 
-void simulation(int number_rounds, std::vector<Player> players, bool should_log) {
+void simulation(int number_rounds, std::vector<Player> players) {
 
     Roulette roulette;
-
-    if (should_log) {
-        for (Player &player : players) {
-            player.init_log();
-        }
-    }
 
     for (int i = 0; i < number_rounds; i++) {
         RouletteResult result{roulette.spin()};
 
         for (Player &player : players) {
             player.play(result);
-            
-            if (should_log) {
-                player.update_log(result.get_result());
-            }
         }
     }
-
-    
-
 }

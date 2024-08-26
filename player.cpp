@@ -6,11 +6,15 @@
 #include "player.h"
 
 // Constructor
-Player::Player(std::shared_ptr<IBetResultChecker> bet_checker, std::string name) 
+Player::Player(std::shared_ptr<IBetResultChecker> bet_checker, std::string name, bool should_log) 
 : bet_checker{bet_checker}
 , bet_balance{0}
 , bet_history{1,2,3,4}
-, name{name} {
+, name{name} 
+, should_log{should_log} {
+    if (should_log) {
+        init_log();
+    }
 }
 
 
@@ -21,6 +25,10 @@ void Player::play(RouletteResult result) {
 
     update_bet_balance(bet_amount, won_bet);
     update_bet_history(bet_amount, won_bet);
+
+    if (should_log) {
+        update_log(result.get_result(), won_bet);
+    }
     
 }
 
@@ -32,33 +40,6 @@ void Player::print_bet_history() {
 
 int Player::get_bet_balance() {
     return bet_balance;
-}
-
-void Player::init_log() {
-    std::string filename = name + ".csv";
-    std::ofstream outf{ filename };
-
-    if (!outf) {
-        throw std::runtime_error("Failed to init log file");
-    }
-
-    outf << "Roulette Result, Balance, Bet History" << std::endl;
-}
-
-void Player::update_log(int result) {
-    std::string filename = name + ".csv";
-    std::ofstream outf{ filename, std::ios::app };
-
-    if (!outf) {
-        throw std::runtime_error("Failed to update log file");
-    }
-
-    outf << result << ", " << bet_balance << ", ";
-    for (int bet : bet_history) {
-        outf << bet << " ";
-    }
-
-    outf << std::endl;
 }
 
 // Private Methods
@@ -115,6 +96,34 @@ void Player::update_bet_history(int bet_amount, bool won_bet) {
 
 void Player::reset_bet_history() {
     bet_history.clear();
-    // TODO check this
     bet_history = {1,2,3,4};
+}
+
+void Player::init_log() {
+    std::string filename = name + ".csv";
+    std::ofstream outf{ filename };
+
+    if (!outf) {
+        throw std::runtime_error("Failed to init log file");
+    }
+
+    outf << "Roulette Result, Won, Balance, Bet History" << std::endl;
+}
+
+void Player::update_log(int result, bool won_bet) {
+    std::string filename = name + ".csv";
+    std::ofstream outf{ filename, std::ios::app };
+
+    if (!outf) {
+        throw std::runtime_error("Failed to update log file");
+    }
+
+    outf << result << ", " 
+         << (won_bet ? "won" : "lost") << ", "
+         << bet_balance << ", ";
+    for (int bet : bet_history) {
+        outf << bet << " ";
+    }
+
+    outf << std::endl;
 }
