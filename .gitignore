@@ -1,3 +1,12 @@
 .vscode/launch.json
 .vscode/settings.json
 .vscode/tasks.json
+Always Black.csv
+Always Even.csv
+Always High.csv
+Always Low.csv
+Always Odd.csv
+Always Red.csv
+main.exe
+player.exe
+simulation.exe

@@ -4,49 +4,41 @@
 #include "player.h"
 #include "bet_checker.h"
 #include "roulette.h"
+#include "simulation.h"
 
-void simulation(int number_rounds) {
+void default_simulation(){
+    std::vector<Player> players{
+        Player(std::make_shared<AlwaysRedBetResultChecker>(), "Always Red"),
+        Player(std::make_shared<AlwaysBlackBetResultChecker>(), "Always Black"),
+        Player(std::make_shared<AlwaysHighBetResultChecker>(), "Always High"),
+        Player(std::make_shared<AlwaysLowBetResultChecker>(), "Always Low"),
+        Player(std::make_shared<AlwaysEvenBetResultChecker>(), "Always Even"),
+        Player(std::make_shared<AlwaysOddBetResultChecker>(), "Always Odd")
+    };
 
-    Player playerA (std::make_unique<AlwaysRedBetResultChecker>());
+    simulation(10, players, true);
+}
 
-    Player playerB (std::make_unique<AlwaysBlackBetResultChecker>());
-
-    Player playerC (std::make_unique<AlwaysHighBetResultChecker>());
-
-    Player playerD (std::make_unique<AlwaysLowBetResultChecker>());
-
-    Player playerE (std::make_unique<AlwaysEvenBetResultChecker>());
-
-    Player playerF (std::make_unique<AlwaysOddBetResultChecker>());
+void simulation(int number_rounds, std::vector<Player> players, bool should_log) {
 
     Roulette roulette;
+
+    if (should_log) {
+        for (Player &player : players) {
+            player.init_log();
+        }
+    }
 
     for (int i = 0; i < number_rounds; i++) {
         RouletteResult result{roulette.spin()};
 
-        std::cout << "Round " << i << std::endl;
-        std::cout << "Number: " << result.get_result() << std::endl;
-        std::cout << "Red: " << result.result_is_red() 
-                    << " High: " << result.result_is_high()
-                    << " Even: " << result.result_is_even()
-                    << std::endl;
-
-        playerA.play(result);
-        playerB.play(result);
-        playerC.play(result);
-        playerD.play(result);
-        playerE.play(result);
-        playerF.play(result);
-
-        std::cout << playerA.get_bet_balance() << " "
-                    << playerB.get_bet_balance() << " "
-                    << playerC.get_bet_balance() << " "
-                    << playerD.get_bet_balance() << " "
-                    << playerE.get_bet_balance() << " "
-                    << playerF.get_bet_balance() << " "
-                    << std::endl;
-
-        std::cout << std::endl;
+        for (Player &player : players) {
+            player.play(result);
+            
+            if (should_log) {
+                player.update_log(result.get_result());
+            }
+        }
     }
 
     

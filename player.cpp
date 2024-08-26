@@ -1,11 +1,17 @@
 #include <iostream>
+#include <string>
+#include <fstream>
+#include <stdexcept>
+
 #include "player.h"
 
 // Constructor
-Player::Player(std::unique_ptr<IBetResultChecker> bet_checker) 
-: bet_checker(std::move(bet_checker))
+Player::Player(std::shared_ptr<IBetResultChecker> bet_checker, std::string name) 
+: bet_checker{bet_checker}
 , bet_balance{0}
-, bet_history{1,2,3,4} {}
+, bet_history{1,2,3,4}
+, name{name} {
+}
 
 
 // Public Methods
@@ -26,6 +32,33 @@ void Player::print_bet_history() {
 
 int Player::get_bet_balance() {
     return bet_balance;
+}
+
+void Player::init_log() {
+    std::string filename = name + ".csv";
+    std::ofstream outf{ filename };
+
+    if (!outf) {
+        throw std::runtime_error("Failed to init log file");
+    }
+
+    outf << "Roulette Result, Balance, Bet History" << std::endl;
+}
+
+void Player::update_log(int result) {
+    std::string filename = name + ".csv";
+    std::ofstream outf{ filename, std::ios::app };
+
+    if (!outf) {
+        throw std::runtime_error("Failed to update log file");
+    }
+
+    outf << result << ", " << bet_balance << ", ";
+    for (int bet : bet_history) {
+        outf << bet << " ";
+    }
+
+    outf << std::endl;
 }
 
 // Private Methods

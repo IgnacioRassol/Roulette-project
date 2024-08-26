@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 #include <list>
 #include <memory>
 
@@ -7,18 +8,22 @@
 
 class Player {
     public:
-        // Constructor
-        Player(std::unique_ptr<IBetResultChecker> bet_checker);
+        Player(std::shared_ptr<IBetResultChecker> bet_checker, std::string name);
         ~Player() = default;
+
         void play(RouletteResult result);
         void print_bet_history();
         int get_bet_balance();
+        void init_log();
+        void update_log(int result);
 
 
     private:
-        std::unique_ptr<IBetResultChecker> bet_checker;
+        std::shared_ptr<IBetResultChecker> bet_checker;
         int bet_balance;
         std::list<int> bet_history;
+        std::string name;
+
 
         int get_bet_amount();
         void update_bet_balance(int amount, bool won_bet);

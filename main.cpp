@@ -2,7 +2,7 @@
 
 int main(){
 
-    simulation(10);
+    default_simulation();
 
     return 0;
 }
