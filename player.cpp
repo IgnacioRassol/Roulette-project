@@ -2,8 +2,8 @@
 #include "player.h"
 
 // Constructor
-Player::Player(IBetResultChecker &bet_checker) 
-: bet_checker{bet_checker}
+Player::Player(std::unique_ptr<IBetResultChecker> bet_checker) 
+: bet_checker(std::move(bet_checker))
 , bet_balance{0}
 , bet_history{1,2,3,4} {}
 
@@ -11,7 +11,7 @@ Player::Player(IBetResultChecker &bet_checker)
 // Public Methods
 void Player::play(RouletteResult result) {
     int bet_amount = get_bet_amount();
-    bool won_bet = bet_checker.won_bet(result);
+    bool won_bet = bet_checker->won_bet(result);
 
     update_bet_balance(bet_amount, won_bet);
     update_bet_history(bet_amount, won_bet);
@@ -22,6 +22,10 @@ void Player::print_bet_history() {
     for (int bet : bet_history) {
         std::cout << bet << std::endl;
     }
+}
+
+int Player::get_bet_balance() {
+    return bet_balance;
 }
 
 // Private Methods
