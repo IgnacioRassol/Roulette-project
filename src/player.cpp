@@ -6,12 +6,16 @@
 #include "player.h"
 
 // Constructor
-Player::Player(std::shared_ptr<IBetResultChecker> bet_checker, std::string name, bool should_log) 
-: bet_checker{bet_checker}
-, bet_balance{0}
-, bet_history{1,2,3,4}
-, name{name} 
-, should_log{should_log} {
+Player::Player(
+    std::shared_ptr<IBetResultChecker> bet_checker,
+    std::string name,
+    bool should_log
+    )
+    : bet_checker{bet_checker}
+    , bet_balance{0}
+    , bet_history{1, 2, 3, 4}
+    , name{name}
+    , should_log{should_log} {
     if (should_log) {
         init_log();
     }
@@ -29,7 +33,6 @@ void Player::play(RouletteResult result) {
     if (should_log) {
         update_log(result.get_result(), won_bet);
     }
-    
 }
 
 void Player::print_bet_history() {
@@ -60,7 +63,7 @@ int Player::get_bet_amount() {
 int Player::check_bet_within_bounds(int bet_amount) {
     if (bet_amount >= 5 && bet_amount <= 4000) {
         return bet_amount;
-    };
+    }
 
     reset_bet_history();
     return bet_history.front() + bet_history.back();
@@ -71,8 +74,8 @@ void Player::update_bet_balance(int amount, bool won_bet) {
     if (won_bet) {
         bet_balance += amount;
         return;
-    };
-    
+    }
+
     bet_balance -= amount;
 }
 
@@ -96,7 +99,7 @@ void Player::update_bet_history(int bet_amount, bool won_bet) {
 
 void Player::reset_bet_history() {
     bet_history.clear();
-    bet_history = {1,2,3,4};
+    bet_history = {1, 2, 3, 4};
 }
 
 void Player::init_log() {
@@ -118,7 +121,7 @@ void Player::update_log(int result, bool won_bet) {
         throw std::runtime_error("Failed to update log file");
     }
 
-    outf << result << ", " 
+    outf << result << ", "
          << (won_bet ? "won" : "lost") << ", "
          << bet_balance << ", ";
     for (int bet : bet_history) {

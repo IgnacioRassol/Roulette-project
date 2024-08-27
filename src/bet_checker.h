@@ -5,11 +5,8 @@
 
 class IBetResultChecker {
     public:
-        // TODO can i avoid having construct and destructor here?
-        // TODO why const?
         virtual ~IBetResultChecker() = default;
         virtual bool won_bet(RouletteResult result) const = 0;
-
 };
 
 class AlwaysRedBetResultChecker : public IBetResultChecker {

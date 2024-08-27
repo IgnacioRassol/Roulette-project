@@ -8,7 +8,10 @@
 
 class Player {
     public:
-        Player(std::shared_ptr<IBetResultChecker> bet_checker, std::string name, bool should_log);
+        Player(
+            std::shared_ptr<IBetResultChecker> bet_checker,
+            std::string name,
+            bool should_log);
         ~Player() = default;
 
         void play(RouletteResult result);
