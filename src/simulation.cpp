@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <memory>
 
 #include "player.h"
 #include "bet_checker.h"
@@ -20,7 +21,6 @@ void default_simulation(){
 }
 
 void simulation(int number_rounds, std::vector<Player> players) {
-
     Roulette roulette;
 
     for (int i = 0; i < number_rounds; i++) {

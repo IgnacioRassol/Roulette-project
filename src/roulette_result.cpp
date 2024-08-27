@@ -9,9 +9,15 @@ const std::vector<int> RouletteResult::red_numbers = {
 };
 
 // Constructor
-// TODO: check if initialization is correct
-RouletteResult::RouletteResult(int number) 
-    : number(number), is_red(false), is_black(false), is_even(false), is_odd(false), is_low(false), is_high(false) {
+RouletteResult::RouletteResult(int number)
+    : number{number}
+    , is_red{false}
+    , is_black{false}
+    , is_even{false}
+    , is_odd{false}
+    , is_low{false}
+    , is_high{false}
+    {
     if (number != 0) {
         check_parity();
         check_high_or_low();

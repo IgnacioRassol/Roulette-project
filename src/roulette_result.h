@@ -5,7 +5,7 @@
 
 class RouletteResult {
     public:
-        RouletteResult(int number);
+        explicit RouletteResult(int number);
 
         int  get_result();
         bool result_is_red();
