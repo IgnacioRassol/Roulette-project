@@ -9,13 +9,17 @@
 Player::Player(
     std::shared_ptr<IBetResultChecker> bet_checker,
     std::string name,
-    bool should_log
+    bool should_log,
+    int min_bet,
+    int max_bet
     )
     : bet_checker{bet_checker}
     , bet_balance{0}
-    , bet_history{1, 2, 3, 4}
+    , bet_history{initial_bet_history}
     , name{name}
-    , should_log{should_log} {
+    , should_log{should_log}
+    , min_bet{min_bet}
+    , max_bet{max_bet} {
     if (should_log) {
         init_log();
     }
@@ -61,7 +65,7 @@ int Player::get_bet_amount() {
 
 
 int Player::check_bet_within_bounds(int bet_amount) {
-    if (bet_amount >= 5 && bet_amount <= 4000) {
+    if (bet_amount >= min_bet && bet_amount <= max_bet) {
         return bet_amount;
     }
 
@@ -99,7 +103,7 @@ void Player::update_bet_history(int bet_amount, bool won_bet) {
 
 void Player::reset_bet_history() {
     bet_history.clear();
-    bet_history = {1, 2, 3, 4};
+    bet_history = initial_bet_history;
 }
 
 void Player::init_log() {
@@ -130,3 +134,5 @@ void Player::update_log(int result, bool won_bet) {
 
     outf << std::endl;
 }
+
+const std::list<int> Player::initial_bet_history = {1, 2, 3, 4};

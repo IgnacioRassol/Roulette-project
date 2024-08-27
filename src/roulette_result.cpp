@@ -2,12 +2,6 @@
 
 #include "roulette_result.h"
 
-
-// Initialize the static member
-const std::vector<int> RouletteResult::red_numbers = {
-    1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36
-};
-
 // Constructor
 RouletteResult::RouletteResult(int number)
     : number{number}
@@ -73,3 +67,8 @@ void RouletteResult::check_color() {
 bool RouletteResult::check_is_red(int number) {
     return std::find(red_numbers.begin(), red_numbers.end(), number) != red_numbers.end();
 }
+
+// Initialize the static member
+const std::vector<int> RouletteResult::red_numbers = {
+    1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36
+};

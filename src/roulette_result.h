@@ -23,12 +23,13 @@ class RouletteResult {
         bool is_odd;
         bool is_low;
         bool is_high;
+        static const std::vector<int> red_numbers;
+
 
         void check_parity();
         void check_high_or_low();
         void check_color();
 
-        static const std::vector<int> red_numbers;
         bool check_is_red(int number);
 };
 

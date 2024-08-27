@@ -6,18 +6,19 @@
 #include "bet_checker.h"
 #include "roulette.h"
 #include "simulation.h"
+#include "config.h"
 
-void default_simulation(){
+void default_simulation() {
     std::vector<Player> players{
-        Player(std::make_shared<AlwaysRedBetResultChecker>(), "Always Red", true),
-        Player(std::make_shared<AlwaysBlackBetResultChecker>(), "Always Black", true),
-        Player(std::make_shared<AlwaysHighBetResultChecker>(), "Always High", true),
-        Player(std::make_shared<AlwaysLowBetResultChecker>(), "Always Low", true),
-        Player(std::make_shared<AlwaysEvenBetResultChecker>(), "Always Even", true),
-        Player(std::make_shared<AlwaysOddBetResultChecker>(), "Always Odd", true)
+        Player(std::make_shared<AlwaysRedBetResultChecker>(), "Always Red"),
+        Player(std::make_shared<AlwaysBlackBetResultChecker>(), "Always Black"),
+        Player(std::make_shared<AlwaysHighBetResultChecker>(), "Always High"),
+        Player(std::make_shared<AlwaysLowBetResultChecker>(), "Always Low"),
+        Player(std::make_shared<AlwaysEvenBetResultChecker>(), "Always Even"),
+        Player(std::make_shared<AlwaysOddBetResultChecker>(), "Always Odd")
     };
 
-    simulation(100, players);
+    simulation(config::number_of_rounds, players);
 }
 
 void simulation(int number_rounds, std::vector<Player> players) {
