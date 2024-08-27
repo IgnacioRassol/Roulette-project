@@ -1,5 +1,7 @@
-#include "roulette_result.h"
 #include <algorithm>
+
+#include "roulette_result.h"
+
 
 // Initialize the static member
 const std::vector<int> RouletteResult::red_numbers = {

@@ -16,7 +16,7 @@ void default_simulation(){
         Player(std::make_shared<AlwaysOddBetResultChecker>(), "Always Odd", true)
     };
 
-    simulation(10, players);
+    simulation(100, players);
 }
 
 void simulation(int number_rounds, std::vector<Player> players) {
