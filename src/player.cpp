@@ -27,6 +27,9 @@ Player::Player(
 
 
 // Public Methods
+
+// There is no need to simulate the actual bet since player behavior is
+// constant, so we check if the player won or lost based on the result.
 void Player::play(const RouletteResult& result) {
     int bet_amount = get_bet_amount();
     bool won_bet = bet_checker->won_bet(result);
@@ -52,6 +55,11 @@ int Player::get_bet_balance() const {
 }
 
 // Private Methods
+
+// We get the bet amount as explained in the requirements.
+// The first and last number of the player's bet history gets added together,
+// as long as it is within the table maximum and minimum bet, and 
+// the player history is not empty.
 int Player::get_bet_amount() {
     if (bet_history.empty()) {
         reset_bet_history();
@@ -86,6 +94,9 @@ void Player::update_bet_balance(int amount, bool won_bet) {
 }
 
 
+// As mentioned in the requirements, if a bet is lost, we remove 
+// the first and last number from the history. If the bet is won, 
+// we add the bet amount to the history.
 void Player::update_bet_history(int bet_amount, bool won_bet) {
     if (won_bet) {
         bet_history.push_back(bet_amount);

@@ -3,9 +3,9 @@
 #include "roulette_result.h"
 
 
-// We check each possible bet when instantiating the object, that way 
-// determining if a bet has won is constant and just requires 
-// checking the variable. 
+// We check each possible bet when instantiating the object, that way
+// determining if a bet has won is constant and just requires
+// checking the variable.
 // Constructor
 RouletteResult::RouletteResult(int number)
     : number{number}
@@ -75,7 +75,7 @@ bool RouletteResult::check_is_red(int number) {
     return std::find(red_numbers.begin(), red_numbers.end(), number) != red_numbers.end();
 }
 
-// Source for red_numbers: 
+// Source for red_numbers:
 // https://es.wikipedia.org/wiki/Ruleta#mediaviewer/Archivo:Roulette_frz.png
 const std::vector<int> RouletteResult::red_numbers = {
     1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36

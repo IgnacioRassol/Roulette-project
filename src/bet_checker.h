@@ -3,6 +3,10 @@
 #include "roulette_result.h"
 
 
+// Abstract base class of BetCheckers. These will be used by the player to 
+// check if they won the bet. They also represent the player's behavior.
+// For example `AlwaysRedBetResultChecker` will mean that the player 
+// always bets red.
 class IBetResultChecker {
     public:
         virtual ~IBetResultChecker() = default;
