@@ -1,12 +1,10 @@
 #include <algorithm>
+#include <stdexcept>
 
 #include "roulette_result.h"
 
 
-// We check each possible bet when instantiating the object, that way
-// determining if a bet has won is constant and just requires
-// checking the variable.
-// Constructor
+// Converts an int it to our internal representation
 RouletteResult::RouletteResult(int number)
     : number{number}
     , is_red{false}
@@ -16,6 +14,13 @@ RouletteResult::RouletteResult(int number)
     , is_low{false}
     , is_high{false}
     {
+    if (number < 0 || number > 36) {
+        throw std::invalid_argument("Trying to create a RouletteResult with an invalid number");
+    }
+
+    // We check each possible bet when instantiating the object, that way
+    // determining if a bet has won is constant and just requires
+    // checking the variable.
     if (number != 0) {
         check_parity();
         check_high_or_low();

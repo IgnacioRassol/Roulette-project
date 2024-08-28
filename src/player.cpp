@@ -5,7 +5,8 @@
 
 #include "player.h"
 
-// Constructor
+const std::list<int> Player::initial_bet_history = {1, 2, 3, 4};
+
 Player::Player(
     std::shared_ptr<IBetResultChecker> bet_checker,
     std::string name,
@@ -28,9 +29,10 @@ Player::Player(
 
 // Public Methods
 
-// There is no need to simulate the actual bet since player behavior is
-// constant, so we check if the player won or lost based on the result.
+
 void Player::play(const RouletteResult& result) {
+    // There is no need to simulate the actual bet since player behavior is
+    // constant, so we check if the player won or lost based on the result.
     int bet_amount = get_bet_amount();
     bool won_bet = bet_checker->won_bet(result);
 
@@ -56,10 +58,9 @@ int Player::get_bet_balance() const {
 
 // Private Methods
 
-// We get the bet amount as explained in the requirements.
-// The first and last number of the player's bet history gets added together,
+// get_bet_amount adds the first and last number of the player's bet history,
 // as long as it is within the table maximum and minimum bet, and 
-// the player history is not empty.
+// the player history is not empty. As requested by the requirements,
 int Player::get_bet_amount() {
     if (bet_history.empty()) {
         reset_bet_history();
@@ -147,5 +148,3 @@ void Player::update_log(int result, bool won_bet) {
 
     outf << std::endl;
 }
-
-const std::list<int> Player::initial_bet_history = {1, 2, 3, 4};

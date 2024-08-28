@@ -27,7 +27,7 @@ class Player {
         // player won or lost and updates the player balance and bet history accordingly.
         void play(const RouletteResult& result);
 
-        //Getters
+        // Getters
         std::string get_name() const;
         std::list<int> get_bet_history() const;
         int get_bet_balance() const;
@@ -46,7 +46,7 @@ class Player {
         bool should_log;
         // The minimum bet allowed at the table.
         int min_bet;
-        // the maximum bet allowed at the table.
+        // The maximum bet allowed at the table.
         int max_bet;
 
         // Initial bet history used to decide the first bet.
