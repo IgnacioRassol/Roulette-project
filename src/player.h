@@ -11,13 +11,14 @@ class Player {
     public:
         Player(
             std::shared_ptr<IBetResultChecker> bet_checker,
-            std::string log_name,
+            std::string name,
             bool should_log = config::should_log,
             int min_bet = config::bet_lower_bound,
             int max_bet = config::bet_upper_bound);
         ~Player() = default;
 
         void play(RouletteResult result);
+        std::string get_name();
         std::list<int> get_bet_history();
         int get_bet_balance();
 
@@ -26,7 +27,7 @@ class Player {
         int bet_balance;
         std::list<int> bet_history;
 
-        std::string log_name;
+        std::string name;
         bool should_log;
         int min_bet;
         int max_bet;

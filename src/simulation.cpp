@@ -19,9 +19,11 @@ void default_simulation() {
     };
 
     simulation(config::number_of_rounds, players);
+
+    display_simulation_results(players);
 }
 
-void simulation(int number_rounds, std::vector<Player> players) {
+void simulation(int number_rounds, std::vector<Player>& players) {
     Roulette roulette;
 
     for (int i = 0; i < number_rounds; i++) {
@@ -31,4 +33,18 @@ void simulation(int number_rounds, std::vector<Player> players) {
             player.play(result);
         }
     }
+}
+
+void display_simulation_results(std::vector<Player>& players) {
+    int team_balance {0};
+
+    for (Player &player : players) {
+        std::cout << "Player: " << player.get_name() << std::endl;
+        std::cout << "Balance: " << player.get_bet_balance() << std::endl;
+
+        team_balance += player.get_bet_balance();
+    }
+
+    std::cout << std::endl;
+    std::cout << "Team Balance: " << team_balance << std::endl;
 }

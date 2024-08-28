@@ -16,3 +16,4 @@ simulation
 /test_build/*
 /test
 test.csv
+src/main

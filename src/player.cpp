@@ -8,7 +8,7 @@
 // Constructor
 Player::Player(
     std::shared_ptr<IBetResultChecker> bet_checker,
-    std::string log_name,
+    std::string name,
     bool should_log,
     int min_bet,
     int max_bet
@@ -16,7 +16,7 @@ Player::Player(
     : bet_checker{bet_checker}
     , bet_balance{0}
     , bet_history{initial_bet_history}
-    , log_name{log_name}
+    , name{name}
     , should_log{should_log}
     , min_bet{min_bet}
     , max_bet{max_bet} {
@@ -37,6 +37,10 @@ void Player::play(RouletteResult result) {
     if (should_log) {
         update_log(result.get_result(), won_bet);
     }
+}
+
+std::string Player::get_name() {
+    return name;
 }
 
 std::list<int> Player::get_bet_history() {
@@ -105,7 +109,7 @@ void Player::reset_bet_history() {
 }
 
 void Player::init_log() {
-    std::string filename = log_name + ".csv";
+    std::string filename = name + ".csv";
     std::ofstream outf{ filename };
 
     if (!outf) {
@@ -116,7 +120,7 @@ void Player::init_log() {
 }
 
 void Player::update_log(int result, bool won_bet) {
-    std::string filename = log_name + ".csv";
+    std::string filename = name + ".csv";
     std::ofstream outf{ filename, std::ios::app };
 
     if (!outf) {
