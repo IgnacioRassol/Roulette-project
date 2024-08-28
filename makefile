@@ -3,7 +3,7 @@ TARGET_EXEC := simulation
 BUILD_DIR := ./build
 SRC_DIRS := ./src
 
-SRCS := $(shell find $(SRC_DIRS) -name '*.cpp')
+SRCS := src/bet_checker.cpp src/main.cpp src/player.cpp src/roulette_result.cpp src/roulette.cpp src/simulation.cpp
 
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 
