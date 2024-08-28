@@ -27,7 +27,6 @@ class RouletteResult {
         bool is_high;
         static const std::vector<int> red_numbers;
 
-
         void check_parity();
         void check_high_or_low();
         void check_color();
