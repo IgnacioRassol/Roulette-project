@@ -39,15 +39,15 @@ void Player::play(RouletteResult result) {
     }
 }
 
-std::string Player::get_name() {
+std::string Player::get_name() const {
     return name;
 }
 
-std::list<int> Player::get_bet_history() {
+std::list<int> Player::get_bet_history() const {
     return bet_history;
 }
 
-int Player::get_bet_balance() {
+int Player::get_bet_balance() const {
     return bet_balance;
 }
 

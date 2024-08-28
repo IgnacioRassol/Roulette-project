@@ -35,10 +35,10 @@ void simulation(int number_rounds, std::vector<Player>& players) {
     }
 }
 
-void display_simulation_results(std::vector<Player>& players) {
+void display_simulation_results(const std::vector<Player>& players) {
     int team_balance {0};
 
-    for (Player &player : players) {
+    for (const Player& player : players) {
         std::cout << "Player: " << player.get_name() << std::endl;
         std::cout << "Balance: " << player.get_bet_balance() << std::endl;
 

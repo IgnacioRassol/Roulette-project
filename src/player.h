@@ -18,9 +18,9 @@ class Player {
         ~Player() = default;
 
         void play(RouletteResult result);
-        std::string get_name();
-        std::list<int> get_bet_history();
-        int get_bet_balance();
+        std::string get_name() const;
+        std::list<int> get_bet_history() const;
+        int get_bet_balance() const;
 
     private:
         std::shared_ptr<IBetResultChecker> bet_checker;
