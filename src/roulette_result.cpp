@@ -4,7 +4,6 @@
 #include "roulette_result.h"
 
 
-// Converts an int it to our internal representation
 RouletteResult::RouletteResult(int number)
     : number{number}
     , is_red{false}
