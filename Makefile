@@ -1,4 +1,5 @@
 TARGET_EXEC := simulation
+TEST_EXEC := test
 
 BUILD_DIR := ./build
 
@@ -24,7 +25,7 @@ $(BUILD_DIR)/%.o: %.cpp src/config.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 
-test: $(OBJS_TEST)
+$(TEST_EXEC): $(OBJS_TEST)
 	$(CXX) $(OBJS_TEST) -o $@
 
 $(TEST_BUILD_DIR)/%.o: %.cpp
@@ -34,7 +35,9 @@ $(TEST_BUILD_DIR)/%.o: %.cpp
 .PHONY: clean
 clean:
 	rm -r $(BUILD_DIR)
+	rm $(TARGET_EXEC)
 
 .PHONY: clean_test
 clean_test:
 	rm -r $(TEST_BUILD_DIR)
+	rm $(TEST_EXEC)
