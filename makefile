@@ -22,7 +22,7 @@ CXXTESTFLAGS := -std=c++14 -O2 -DNDEBUG -I ./src -I ./src/test/catch2
 $(TARGET_EXEC): $(OBJS)
 	$(CXX) $(OBJS) -o $@
 
-$(BUILD_DIR)/%.cpp.o: %.cpp
+$(BUILD_DIR)/%.cpp.o: %.cpp src/config.h
 	mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
