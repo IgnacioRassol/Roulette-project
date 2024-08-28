@@ -2,6 +2,10 @@
 
 #include "roulette_result.h"
 
+
+// We check each possible bet when instantiating the object, that way 
+// determining if a bet has won is constant and just requires 
+// checking the variable. 
 // Constructor
 RouletteResult::RouletteResult(int number)
     : number{number}
@@ -24,6 +28,9 @@ int RouletteResult::get_result() const {
     return number;
 }
 
+// The below methods are not getters, but our chosen implementation makes them
+// act like them. That's an implementation detail, and should not be reflected
+//  in the exposed interface.
 bool RouletteResult::result_is_red() const {
     return is_red;
 }
@@ -68,7 +75,8 @@ bool RouletteResult::check_is_red(int number) {
     return std::find(red_numbers.begin(), red_numbers.end(), number) != red_numbers.end();
 }
 
-// Initialize the static member
+// Source for red_numbers: 
+// https://es.wikipedia.org/wiki/Ruleta#mediaviewer/Archivo:Roulette_frz.png
 const std::vector<int> RouletteResult::red_numbers = {
     1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36
 };
