@@ -15,3 +15,4 @@ simulation.exe
 simulation
 /test_build/*
 /test
+test.csv
