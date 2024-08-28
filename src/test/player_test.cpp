@@ -70,6 +70,9 @@ TEST_CASE("Player correctly resets bet history when next bet is higher than tabl
     player.play(RouletteResult{1});
     player.play(RouletteResult{1});
     player.play(RouletteResult{1});
+    REQUIRE(player.get_bet_history() == std::list<int>{1,2,3,4,5,6,7,8,9});
+
+    player.play(RouletteResult{1});
 
     REQUIRE(player.get_bet_history() == std::list<int>{1,2,3,4,5,6,7,8,9,10});
 
