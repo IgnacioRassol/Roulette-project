@@ -16,14 +16,13 @@
 class Player {
     public:
         Player(
-            std::function<bool (const RouletteResult&)> bet_checker,
+            std::function<bool(const RouletteResult&)> bet_checker,
             std::string name,
             bool should_log = config::should_log,
             int min_bet = config::bet_lower_bound,
             int max_bet = config::bet_upper_bound);
-        ~Player() = default;
 
-        // The play method uses the received roulette result to check if the 
+        // The play method uses the received roulette result to check if the
         // player won or lost and updates the player balance and bet history accordingly.
         void play(const RouletteResult& result);
 
@@ -34,7 +33,7 @@ class Player {
 
     private:
         // The bet checker is responsible for determining if the player has won.
-        std::function<bool (const RouletteResult&)> bet_checker;
+        std::function<bool(const RouletteResult&)> bet_checker;
         // The player's balance is the amount of money they have lost or won during the simulation.
         int bet_balance;
         // The bet history is used to determine the amount of the next bet according to some rules.

@@ -59,7 +59,7 @@ int Player::get_bet_balance() const {
 // Private Methods
 
 // get_bet_amount adds the first and last number of the player's bet history,
-// as long as it is within the table maximum and minimum bet, and 
+// as long as it is within the table maximum and minimum bet, and
 // the player history is not empty. As requested by the requirements,
 int Player::get_bet_amount() {
     if (bet_history.empty()) {
@@ -95,8 +95,8 @@ void Player::update_bet_balance(int amount, bool won_bet) {
 }
 
 
-// As mentioned in the requirements, if a bet is lost, we remove 
-// the first and last number from the history. If the bet is won, 
+// As mentioned in the requirements, if a bet is lost, we remove
+// the first and last number from the history. If the bet is won,
 // we add the bet amount to the history.
 void Player::update_bet_history(int bet_amount, bool won_bet) {
     if (won_bet) {

@@ -2,8 +2,8 @@
 
 #include <vector>
 
-// Class that represents a roulette result, with all the information necessary 
-// to easily check if one of the basic bets 
+// Class that represents a roulette result, with all the information necessary
+// to easily check if one of the basic bets
 // (i.e. red/black, odd/even, high/low) has won.
 class RouletteResult {
     public:

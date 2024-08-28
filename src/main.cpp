@@ -10,7 +10,7 @@ int main() {
     catch (std::runtime_error& e) {
         std::cerr << "Error: " << e.what() << std::endl;
     }
-    catch (std::invalid_argument& e){
+    catch (std::invalid_argument& e) {
         std::cerr << "Error: " << e.what() << std::endl;
     }
 
