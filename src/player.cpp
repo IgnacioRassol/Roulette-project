@@ -29,7 +29,6 @@ Player::Player(
 
 // Public Methods
 
-
 void Player::play(const RouletteResult& result) {
     // There is no need to simulate the actual bet since player behavior is
     // constant, so we check if the player won or lost based on the result.
