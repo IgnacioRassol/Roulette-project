@@ -13,3 +13,8 @@ simulation.exe
 /build/*
 .vscode/c_cpp_properties.json
 test/test
+simulation
+test
+test_build/src/roulette_result.cpp.o
+test_build/src/test/roulette_result_test.cpp.o
+test_build/src/test/catch2/catch_amalgamated.cpp.o

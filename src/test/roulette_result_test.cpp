@@ -6,8 +6,11 @@ TEST_CASE("Roulette result correctly identifies 0", "[roulette_result]") {
     RouletteResult zero_result{0};
 
     REQUIRE_FALSE(zero_result.result_is_even());
+    REQUIRE_FALSE(zero_result.result_is_odd());
     REQUIRE_FALSE(zero_result.result_is_low());
+    REQUIRE_FALSE(zero_result.result_is_high());
     REQUIRE_FALSE(zero_result.result_is_red());
+    REQUIRE_FALSE(zero_result.result_is_black());
 }
 
 TEST_CASE("Roulette result correctly identifies color", "[roulette_result]") {
