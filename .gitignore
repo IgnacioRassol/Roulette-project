@@ -11,3 +11,5 @@ main.exe
 player.exe
 simulation.exe
 /build/*
+.vscode/c_cpp_properties.json
+test/test
