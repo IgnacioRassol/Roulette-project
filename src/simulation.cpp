@@ -10,12 +10,12 @@
 
 void default_simulation() {
     std::vector<Player> players{
-        Player(std::make_shared<AlwaysRedBetResultChecker>(), "Always Red"),
-        Player(std::make_shared<AlwaysBlackBetResultChecker>(), "Always Black"),
-        Player(std::make_shared<AlwaysHighBetResultChecker>(), "Always High"),
-        Player(std::make_shared<AlwaysLowBetResultChecker>(), "Always Low"),
-        Player(std::make_shared<AlwaysEvenBetResultChecker>(), "Always Even"),
-        Player(std::make_shared<AlwaysOddBetResultChecker>(), "Always Odd")
+        Player(AlwaysRedBetResultChecker, "Always Red"),
+        Player(AlwaysBlackBetResultChecker, "Always Black"),
+        Player(AlwaysHighBetResultChecker, "Always High"),
+        Player(AlwaysLowBetResultChecker, "Always Low"),
+        Player(AlwaysEvenBetResultChecker, "Always Even"),
+        Player(AlwaysOddBetResultChecker, "Always Odd")
     };
 
     simulation(config::number_of_rounds, players);

@@ -8,7 +8,7 @@
 const std::list<int> Player::initial_bet_history = {1, 2, 3, 4};
 
 Player::Player(
-    std::shared_ptr<IBetResultChecker> bet_checker,
+    std::function<bool(const RouletteResult&)> bet_checker,
     std::string name,
     bool should_log,
     int min_bet,
@@ -34,7 +34,7 @@ void Player::play(const RouletteResult& result) {
     // There is no need to simulate the actual bet since player behavior is
     // constant, so we check if the player won or lost based on the result.
     int bet_amount = get_bet_amount();
-    bool won_bet = bet_checker->won_bet(result);
+    bool won_bet = bet_checker(result);
 
     update_bet_balance(bet_amount, won_bet);
     update_bet_history(bet_amount, won_bet);

@@ -1,25 +1,25 @@
 #include "bet_checker.h"
 
-bool AlwaysRedBetResultChecker::won_bet(const RouletteResult& result) const {
+bool AlwaysRedBetResultChecker(const RouletteResult& result) {
     return result.result_is_red();
 }
 
-bool AlwaysBlackBetResultChecker::won_bet(const RouletteResult& result) const {
+bool AlwaysBlackBetResultChecker(const RouletteResult& result) {
     return result.result_is_black();
 }
 
-bool AlwaysEvenBetResultChecker::won_bet(const RouletteResult& result) const {
+bool AlwaysEvenBetResultChecker(const RouletteResult& result) {
     return result.result_is_even();
 }
 
-bool AlwaysOddBetResultChecker::won_bet(const RouletteResult& result) const {
+bool AlwaysOddBetResultChecker(const RouletteResult& result) {
     return result.result_is_odd();
 }
 
-bool AlwaysLowBetResultChecker::won_bet(const RouletteResult& result) const {
+bool AlwaysLowBetResultChecker(const RouletteResult& result) {
     return result.result_is_low();
 }
 
-bool AlwaysHighBetResultChecker::won_bet(const RouletteResult& result) const {
+bool AlwaysHighBetResultChecker(const RouletteResult& result) {
     return result.result_is_high();
 }

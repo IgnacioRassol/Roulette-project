@@ -2,7 +2,7 @@
 
 #include <string>
 #include <list>
-#include <memory>
+#include <functional>
 
 #include "bet_checker.h"
 #include "config.h"
@@ -11,12 +11,12 @@
 // (the house always wins, after all). It's also responsible for figuring out
 // the amount of the next bet.
 // The responsibility of choosing and determining the outcome of the next
-// bet is delegated to the bet checker.
+// bet is delegated to the bet checker callback.
 // This represents the player's behavior (for example, always betting red).
 class Player {
     public:
         Player(
-            std::shared_ptr<IBetResultChecker> bet_checker,
+            std::function<bool (const RouletteResult&)> bet_checker,
             std::string name,
             bool should_log = config::should_log,
             int min_bet = config::bet_lower_bound,
@@ -34,7 +34,7 @@ class Player {
 
     private:
         // The bet checker is responsible for determining if the player has won.
-        std::shared_ptr<IBetResultChecker> bet_checker;
+        std::function<bool (const RouletteResult&)> bet_checker;
         // The player's balance is the amount of money they have lost or won during the simulation.
         int bet_balance;
         // The bet history is used to determine the amount of the next bet according to some rules.
