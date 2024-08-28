@@ -20,31 +20,31 @@ RouletteResult::RouletteResult(int number)
 }
 
 // Public methods
-int RouletteResult::get_result() {
+int RouletteResult::get_result() const {
     return number;
 }
 
-bool RouletteResult::result_is_red() {
+bool RouletteResult::result_is_red() const {
     return is_red;
 }
 
-bool RouletteResult::result_is_black() {
+bool RouletteResult::result_is_black() const {
     return is_black;
 }
 
-bool RouletteResult::result_is_even() {
+bool RouletteResult::result_is_even() const {
     return is_even;
 }
 
-bool RouletteResult::result_is_odd() {
+bool RouletteResult::result_is_odd() const {
     return is_odd;
 }
 
-bool RouletteResult::result_is_low() {
+bool RouletteResult::result_is_low() const {
     return is_low;
 }
 
-bool RouletteResult::result_is_high() {
+bool RouletteResult::result_is_high() const {
     return is_high;
 }
 

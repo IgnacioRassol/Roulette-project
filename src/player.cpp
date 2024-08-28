@@ -27,7 +27,7 @@ Player::Player(
 
 
 // Public Methods
-void Player::play(RouletteResult result) {
+void Player::play(const RouletteResult& result) {
     int bet_amount = get_bet_amount();
     bool won_bet = bet_checker->won_bet(result);
 

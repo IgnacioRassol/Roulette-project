@@ -17,7 +17,7 @@ class Player {
             int max_bet = config::bet_upper_bound);
         ~Player() = default;
 
-        void play(RouletteResult result);
+        void play(const RouletteResult& result);
         std::string get_name() const;
         std::list<int> get_bet_history() const;
         int get_bet_balance() const;

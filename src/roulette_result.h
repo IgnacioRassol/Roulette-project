@@ -7,13 +7,13 @@ class RouletteResult {
     public:
         explicit RouletteResult(int number);
 
-        int  get_result();
-        bool result_is_red();
-        bool result_is_black();
-        bool result_is_even();
-        bool result_is_odd();
-        bool result_is_low();
-        bool result_is_high();
+        int  get_result() const;
+        bool result_is_red() const;
+        bool result_is_black() const;
+        bool result_is_even() const;
+        bool result_is_odd() const;
+        bool result_is_low() const;
+        bool result_is_high() const;
 
     private:
         int number;
